@@ -1,0 +1,348 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{storm.master_tweet.text[:10]}}.. | TidyStory</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Search Engine -->
+        <meta name="description" content="{{storm.master_tweet.text[:10]}}">
+        <meta name="image" content="{{storm.meta_url}}">
+        <!-- Schema.org for Google -->
+        <meta itemprop="name" content="{{storm.master_tweet.text[:10]}}...">
+        <meta itemprop="description" content="{{storm.master_tweet.text[10:]}}">
+        <meta itemprop="image" content="{{storm.meta_url}}">
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{storm.master_tweet.text[:10]}}">
+        <meta name="twitter:description" content="{{storm.master_tweet.text[10:]}}">
+        <meta name="twitter:site" content="@tidystory">
+        <meta name="twitter:image:src" content="{{storm.meta_url}}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image:alt" content="{{storm.master_tweet.text[:10]}}">
+        <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+        <meta name="og:title" content="{{storm.master_tweet.text[:10]}}">
+        <meta name="og:description" content="{{storm.master_tweet.text}}">
+        <meta name="og:image" content="{{storm.meta_url}}">
+        <meta name="og:url" content="https://tidystory.com/storm/{{storm.story_id}}">
+        <meta name="og:site_name" content="Tidystory">
+        <meta name="og:locale" content="en_US">
+        <meta name="fb:admins" content="100009162029085">
+        <meta name="fb:app_id" content="1791870674256874">
+        <meta name="og:type" content="website">
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/bulma.css">
+        <link rel="stylesheet" href="/static/css/qv.css">
+        <link rel="stylesheet" href="/static/css/plyr.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/img/meta/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/img/meta/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/img/meta/favicon-16x16.png">
+        <link rel="manifest" href="/static/img/meta/site.webmanifest">
+        <link rel="mask-icon" href="/static/img/meta/safari-pinned-tab.svg" color="#353535">
+        <link rel="shortcut icon" href="/static/img/meta/favicon.ico">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="msapplication-config" content="/static/img/meta/browserconfig.xml">
+        <meta name="theme-color" content="#000000">
+    </head>
+    <body class="sans-serif push-sf">
+        <nav class="navbar has-shadow is-spaced">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img src="/static/img/logo.png" alt="Tidystory" width="90">
+                    </a>
+                    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="navbar-menu" id="navMenu">
+                    <div class="navbar-end">
+                        <input class="input navbar-item l-space" id="searchbar" type="search" placeholder="Search...">
+                        <a class="navbar-item button is-white l-space" href="/signin">
+                            <span class="icon has-text-dark">
+                                <i class="fas fa-sign-in-alt"></i>
+                            </span>
+                            <span>Sign In</span>
+                        </a>
+                        <a class="navbar-item button is-dark l-space" href="/">Create Story</a>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="has-background-white content-sf storm-spacer">
+            <div class="container">
+                <div class="columns is-centered">
+                    <div class="is-10 column">
+                        <div class="title-block">
+                            <h3 class="author-name">{{storm.vis_timestamp}}</h3>
+                            <h1 class="storm-title">
+                            Story by @{{storm.author.handle}}
+                            </h1>
+                            <div class="dash" style="background: #{{storm.author.color}}"></div>
+                        </div>
+                        <h2 class="subheader sh-storm">This story contains {{storm.tweets.keys()|length}} tweets and it was unrolled by <a href="https://twitter.com/{{storm.unrolled_by_handle}}">@{{storm.unrolled_by_handle}}</a></h2>
+                    </div>
+                </div>
+                <div class="columns is-centered">
+                    <div class="is-7 column">
+                        <div class="content is-medium">
+                        {% for tweet in storm.tweets.values()|sort(attribute='id') %}
+                            <div class="tweet-action">
+                                <p class="body-text">
+                                    {{tweet.text}}
+                                    <span>
+                                        <p class="buttons annotate-btn"  data-show="quickview" data-target="qv_{{tweet.ts_uid}}">
+                                            <a class="button is-rounded is-small is-dark">
+                                                <span class="icon">
+                                                <i class="fas fa-comment-alt"></i>
+                                                </span>
+                                                {% if tweet.hasAnnotations %}
+                                                <span>View all {{tweet.numberAnnotations}} comments</span>
+                                                {% else %}
+                                                <span>Add Comment</span>
+                                                {% endif %}
+                                            </a>
+                                        </p>
+                                    </span>
+                                </p>
+                                {% if tweet.hasUrls %}
+                                {% for urlNum in tweet.urls %}
+                                <a class="box fragment" href="{{tweet.urls[loop.index0].url}}" target="_blank">
+                                    {% if tweet.urls[loop.index0].image != "" or tweet.urls[loop.index0].title != "" or tweet.urls[loop.index0].description != "" %}
+                                    {% if tweet.urls[loop.index0].image != "" %}
+                                    <img src ="{{tweet.urls[loop.index0].image}}" alt="some description"/> 
+                                    {% endif %}
+                                    {% if tweet.urls[loop.index0].title != "" %}
+                                    <h3>{{tweet.urls[loop.index0].title}}</h3>
+                                    {% endif %}
+                                    <p class="text">
+                                        {% if tweet.urls[loop.index0].description != "" %}
+                                        {{tweet.urls[loop.index0].description}}
+                                        {% endif %}
+                                    </p>
+                                    {% else %}
+                                    <h3 class="link-only">{{tweet.urls[loop.index0].url[:60]}}...</h3>
+                                    {% endif %}
+                                </a>
+                                {% endfor %}
+                                {% endif %}
+                                {% if tweet.hasMedia %}
+                                {% for media in tweet.media.values() %}
+                                {% if media.type == "photo" %}
+                                <div class="box">
+                                    <img src="{{media.link}}">
+                                </div>
+                                {% elif media.type == "video" or media.type == "animated_gif" %}
+                                <div class="box vid-box">
+                                    <video poster="{{media.image}}" class="video-player" playsinline controls>
+                                        <source src="{{media.link}}" type="video/mp4">
+                                    </video>
+                                </div>
+                                {% endif %}
+                                {% endfor %}
+                                {% endif %}
+                            </div>
+                        
+                            <div id="qv_{{tweet.ts_uid}}" class="quickview">
+                                <header class="quickview-header is-dark">
+                                    <h1 class="title is-5">
+                                        <span class="icon">
+                                            <i class="fab fa-twitter"></i>
+                                        </span>
+                                        Annotate Tweet
+                                    </h1>
+                                    <span class="delete" data-dismiss="quickview"></span>
+                                </header>
+                            
+                                <div class="quickview-body">
+                                    <div class="quickview-block finder-block">
+                                        <div class="tweet-annotate-ref">
+                                            " {{tweet.text}} "
+                                        </div>
+                                        <div class="comments-all">
+                                            <div class="title is-5 comments-title">All Comments</div>
+                                            <div class="comments-holder">
+                                                <div class="no-thread">
+                                                    <h2 class="title is-6">
+                                                        <span class="icon">
+                                                            <i class="fas fa-trophy"></i>
+                                                        </span>Log in first!</h2>
+                                                    <h6 class="subtitle is-6">To add or view annotations, you need to log in</h6>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="new-comment">
+                                            <div class="new-comment-holder">
+                                                <div class="ch-newcomment">
+                                                    <article class="media">
+                                                        <div class="media-left">
+                                                            <p class="image is-32x32">
+                                                                <img class="is-rounded" src="/static/img/default.png">
+                                                            </p>
+                                                        </div>
+                                                        <div class="media-content">
+                                                            <div class="field">
+                                                                <p class="control">
+                                                                    <textarea class="textarea annotate-tb" placeholder="Put your thoughts down here..."></textarea>
+                                                                </p>
+                                                            </div>
+                                                            <div class="field">
+                                                                <p class="control">
+                                                                    <a class="button is-fullwidth is-dark annotate-add" href="/signin">Post comment</a>
+                                                                </p>
+                                                            </div>
+                                                        </div>
+                                                    </article>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endfor %}
+                        <div class="share-bar">
+                            <h2 class="title is-5 tt">If you enjoyed this story, feel free to help others find it</h2>
+                            <p class="subtitle is-6 st">Use the buttons below to share this story with your network</p>
+                            <div class="level">
+                                <div class="level-left">
+                                    <p class="buttons">
+                                        <a class="button is-light" href="https://www.facebook.com/sharer/sharer.php?u=https://tidystory.com/storm/{{storm_id}}" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-facebook-f"></i>
+                                            </span>
+                                        </a>
+                                        <a class="button is-light" href="https://twitter.com/intent/tweet?text={{storm.title}}&url=https://tidystory.com/storm/{{storm_id}}" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-twitter"></i>
+                                            </span>
+                                        </a>
+                                        <a class="button is-light" href="mailto:?subject=Hey, check out this story by @{{storm.author.handle}} on Tidystory&body=https://tidystory.com/storm/{{storm_id}}" target="_blank">
+                                            <span class="icon">
+                                                <i class="fas fa-envelope"></i>
+                                            </span>
+                                        </a>
+                                        <a class="button is-light">
+                                            <span class="icon">
+                                                <i class="fas fa-link"></i>
+                                            </span>
+                                        </a>
+                                    </p>
+                                </div>
+                                <div class="level-right">
+                                    <p class="buttons">
+                                        <a class="button is-dark add-to-collection" href="/signin">
+                                            <span class="icon">
+                                                <i class="fas fa-plus"></i>
+                                            </span>
+                                            <span>Add to collection</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="follow-bar">
+                            <div class="level">
+                                <div class="level-left">
+                                    <div class="media">
+                                        <div class="media-left">
+                                            <div class="image is-48x48">
+                                                <img src="{{storm.author.image}}" alt="{{storm.author.name}}">
+                                            </div>
+                                        </div>
+                                        <div class="media-content">
+                                            <p class="title is-4">{{storm.author.name}}</p>
+                                            <p class="subtitle is-6">@{{storm.author.handle}}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="level-right">
+                                    <p class="buttons">
+                                        <a class="button is-info" href="https://twitter.com/{{storm.author.handle}}" target="_blank">
+                                            <span class="icon">
+                                                <i class="fab fa-twitter"></i>
+                                            </span>
+                                            <span>Follow on Twitter</span>
+                                        </a>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+        <footer class="footer">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-4">
+                        <h4 class="bd-footer-title">
+                            <strong xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">tidystory</strong> on Twitter</a>.
+                        </h4>
+                        <div class="bd-footer-iframe">
+                            <a href="https://twitter.com/tidystory?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="true">Follow @tidystory</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <h4 class="bd-footer-title">
+                            <strong>tidystory</strong> on Facebook
+                        </h4>
+                        
+                        <div class="bd-footer-iframe">
+                            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Ftidystory&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=1791870674256874" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <div class="bd-footer-tsp">
+                            <a href="/terms">Terms of Service</a> &bull;
+                            <a rel="license" href="/privacy">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="modal create-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Create Story</p>
+                </header>
+                <section class="modal-card-body">
+                    <div class="notification is-warning error-holder">
+                        <span class="error-message"></span>
+                    </div>
+                    <p>Paste a link to a tweet <strong>from the thread you wish to unroll</strong>. You can also unroll directly from Twitter by replying to the tweet and mentioning <a href="https://twitter.com/tidystory" target="_blank">@tidystory</a> in the reply.</p>
+                    <br>
+                    <div class="control">
+                        <input class="input is-medium story-link" type="text" placeholder="Link to tweet">
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-dark send-story">Create Story</button>
+                    <button class="button create-modal-close">Maybe Later</button>
+                </footer>
+                <button class="modal-close create-modal-close is-large" aria-label="close"></button>
+            </div>
+        </div>       
+        <script src="https://cdn.plyr.io/3.4.3/plyr.js"></script>
+    </body>
+    <script type="text/javascript" src="/static/js/qv.js"></script>
+    {% assets "logged_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125829731-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-125829731-1');
+    </script>
+</html>

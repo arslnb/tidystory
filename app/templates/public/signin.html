@@ -1,0 +1,45 @@
+{% extends "public/base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<main class="has-background-light content-sf center-box">
+    <div class="columns is-centered">
+        <div class="is-one-third column">
+            <div class="box ">
+
+                <h3 class="title is-4">Sign In</h3>
+
+                <div class="notification is-danger error-holder">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Email</label>
+                    <div class="control">
+                            <input class="input email-val" type="email" placeholder="e.g. alexsmith@gmail.com">
+                    </div>
+                </div>
+                <div class="field">
+                    <label class="label is-small">Password</label>
+                    <div class="control">
+                        <input class="input pwd-val" type="password" placeholder="(Minimum 8 characters)">
+                    </div>
+                </div>
+
+                <br>
+
+                <a class="button is-dark is-fullwidth has-text-weight-semibold email-trigger email-signin">Sign in using email</a>
+                <div class="has-text-centered or-divider">or</div>
+                <a class="button is-primary is-fullwidth is-info has-text-weight-semibold twitter-signin">
+                    <span class="icon">
+                        <i class="fab fa-twitter"></i>
+                    </span>
+                    <span>Continue using Twitter</span>
+                </a>
+            </div>
+            <div class="has-text-centered">
+                <a href="/signup" class="f6 link dim underline black dib">Sign up for a new account</a> <span class="dark-gray i f6">or</span> <a href="/reset" class="f6 link underline dim black dib">Reset your password</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

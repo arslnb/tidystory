@@ -1,0 +1,338 @@
+<!doctype html>
+<html class="no-js" lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>{{collection.title}} - TidyStory</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- Search Engine -->
+        <meta name="description" content="{{collection.desc.text}}">
+        <meta name="image" content="{{collection.meta_url}}">
+        <!-- Schema.org for Google -->
+        <meta itemprop="name" content="{{collection.title}} on TidyStory">
+        <meta itemprop="description" content="{{collection.desc.text}}">
+        <meta itemprop="image" content="{{collection.meta_url}}">
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:title" content="{{collection.title}} on TidyStory">
+        <meta name="twitter:description" content="{{collection.desc.text}}">
+        <meta name="twitter:site" content="@tidystory">
+        <meta name="twitter:image:src" content="{{collection.meta_url}}">
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:image:alt" content="{{collection.title}}">
+        <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+        <meta name="og:title" content="{{collection.title}} on TidyStory">
+        <meta name="og:description" content="{{collection.desc.text}}">
+        <meta name="og:image" content="{{collection.meta_url}}">
+        <meta name="og:url" content="https://tidystory.com/collection/{{collection.collection_id}}">
+        <meta name="og:site_name" content="Tidystory">
+        <meta name="og:locale" content="en_US">
+        <meta name="fb:admins" content="100009162029085">
+        <meta name="fb:app_id" content="1791870674256874">
+        <meta name="og:type" content="website">
+        <!-- Stylesheets -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
+        <link rel="stylesheet" href="/static/css/bulma.css">
+        <link rel="stylesheet" href="/static/css/qv.css">
+        <link rel="stylesheet" href="/static/css/plyr.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
+        <!-- Favicons -->
+        <link rel="apple-touch-icon" sizes="180x180" href="/static/img/meta/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="/static/img/meta/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/static/img/meta/favicon-16x16.png">
+        <link rel="manifest" href="/static/img/meta/site.webmanifest">
+        <link rel="mask-icon" href="/static/img/meta/safari-pinned-tab.svg" color="#353535">
+        <link rel="shortcut icon" href="/static/img/meta/favicon.ico">
+        <meta name="msapplication-TileColor" content="#000000">
+        <meta name="msapplication-config" content="/static/img/meta/browserconfig.xml">
+        <meta name="theme-color" content="#000000">
+    </head>
+    <body class="sans-serif push-sf">
+        <nav class="navbar has-shadow is-spaced">
+            <div class="container">
+                <div class="navbar-brand">
+                    <a class="navbar-item" href="/">
+                        <img src="/static/img/logo.png" alt="Tidystory" width="90">
+                    </a>
+                    <a role="button" class="navbar-burger" data-target="navMenu" aria-label="menu" aria-expanded="false">
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                        <span aria-hidden="true"></span>
+                    </a>
+                </div>
+                <div class="navbar-menu" id="navMenu">
+                    <div class="navbar-end">
+                        <input class="input navbar-item l-space" id="searchbar" type="search" placeholder="Search...">
+                        <a class="navbar-item button is-white l-space">
+                            <span class="icon has-text-warning">
+                                <i class="fas fa-star"></i>
+                            </span>
+                            <span>Discover</span>
+                        </a>
+                        <a class="navbar-item button is-dark l-space create-story" href="#">Create Story</a>
+                        <div class="navbar-item has-dropdown is-hoverable l-space">
+                            <a class="navbar-link">
+                                <img src="{{user.photoURL}}" alt="Tidystory">
+                            </a>
+                            
+                            <div class="navbar-dropdown">
+                                <a class="navbar-item">
+                                    Help Desk
+                                </a>
+                                <a class="navbar-item">
+                                    Bug Report
+                                </a>
+                                <a class="navbar-item" href="/signout">
+                                    Log Out
+                                </a>
+                                <hr class="navbar-divider">
+                                <div class="navbar-item">
+                                    Version 0.8.1
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </nav>
+        <main class="has-background-white">
+            <div class="container">
+              <div class="collection-header">
+                <p class="subtitle is-3 has-text-weight-light">{{collection.genre}}</p>
+                <h1 class="title is-1 has-text-weight-bold">{{collection.title}}</h1>
+                <p class="subtitle is-5">By <a>{{collection.author.name}}</a> on {{collection.timestamp}}</p>
+              </div>
+              <div class="cover-img" style="background-image: url('{{collection.image_url}}');"></div>
+              <div class="columns">
+                  <div class="column">
+                    <div class="share-c-bar">
+                    <h2 class="title is-5">Share this collection</h2>
+                    <p class="buttons">
+                        <a class="button is-dark">
+                          <span class="icon is-small">
+                            <i class="fab fa-facebook-f"></i>
+                          </span>
+                        </a>
+                        <a class="button is-dark">
+                          <span class="icon is-small">
+                            <i class="fab fa-twitter"></i>
+                          </span>
+                        </a>
+                        <a class="button is-dark">
+                          <span class="icon is-small">
+                            <i class="fas fa-envelope"></i>
+                          </span>
+                        </a>
+                        <a class="button is-dark">
+                          <span class="icon is-small">
+                            <i class="fas fa-link"></i>
+                          </span>
+                        </a>
+                    </p>
+                    {% if user.id == adminId %}
+                    <a class="button is-fullwidth is-dark feature-btn" data-collectionid="{{collection.collection_id}}">Feature this collection</a>
+                    {% endif %}
+                  </div>
+                  </div>
+                  <div class="column is-9">
+                    <div class="collection-desc">
+                      <p>{{collection.desc}}</p>
+                    </div>
+                    <hr>
+                    <div class="stories">
+                    <h2 class="title is-3">All Stories</h2>
+                    <br>
+                    <div class="columns is-multiline">
+                        {% if collection.stories %}           
+                        {% for story in collection.stories.values() %}
+                        <div class="column cc-box is-4">
+                            <a class="card" href="/storm/{{story.story_id}}">
+                                <header class="card-header">
+                                  <span class="card-header-icon">
+                                    <span class="icon has-text-info">
+                                      <i class="fab fa-2x fa-twitter-square" aria-hidden="true"></i>
+                                    </span>
+                                  </span>
+                                  <p class="card-header-title">
+                                    @{{story.author.handle}}
+                                  </p>
+                                  <span class="card-header-icon rfc-trigger" aria-label="remove from collection" data-collectionid="{{collection.collection_id}}" data-storyid="{{story.story_id}}">
+                                      <span class="icon">
+                                        <i class="fas fa-times" aria-hidden="true"></i>
+                                      </span>
+                                  </span>
+                                </header>
+                                <div class="card-content storm-card">
+                                  <div class="content">
+                                    {{story.master_tweet.text[:170]}}...
+                                  </div>
+                                <time>{{story.vis_timestamp}}</time>
+                                </div>
+                            </a>
+                        </div>
+                        {% endfor %}
+                        {% else %}
+                        <div class="is-padded">
+                          <h3 class="title is-4">
+                            <span class="icon">
+                              <i class="fas fa-frown"></i>
+                            </span>
+                            No stories here yet
+                          </h3>
+                          {% if user.id == collection.author_uid %}
+                          <h4 class="subtitle is-5">Go to a story and add it to this collection using the "Add to Collection" button</h4>
+                          {% else %}
+                          <h4 class="subtitle is-5">Check back later to see what's cooking</h4>
+                          {% endif %}
+                        </div>
+                        {% endif %}
+                        
+                      </div>
+                    </div>
+                  </div>
+              </div>      
+            </div>
+          </main>
+        <footer class="footer">
+            <div class="container">
+                <div class="columns">
+                    <div class="column is-4">
+                        <h4 class="bd-footer-title">
+                            <strong xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">tidystory</strong> on Twitter</a>.
+                        </h4>
+                        <div class="bd-footer-iframe">
+                            <a href="https://twitter.com/tidystory?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="true">Follow @tidystory</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <h4 class="bd-footer-title">
+                            <strong>tidystory</strong> on Facebook
+                        </h4>
+                        
+                        <div class="bd-footer-iframe">
+                            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Ftidystory&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=1791870674256874" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
+                        </div>
+                    </div>
+                    <div class="column is-4">
+                        <div class="bd-footer-tsp">
+                                <a href="/terms">Terms of Service</a> &bull;
+                                <a rel="license" href="/privacy">Privacy Policy</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </footer>
+        <div class="modal p-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">What's happening?</p>
+                </header>
+                <section class="modal-card-body">
+                    <div class="notification is-warning error-holder">
+                        <span class="error-message"></span>
+                    </div>
+                    <p>Your story is being processed. This shouldn't take much time. You can either wait or grab a quick coffee. We'll ping you on Twitter either ways!</p>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button p-modal-close">Thanks, got it!</button>
+                </footer>
+                <button class="modal-close p-modal-close is-large" aria-label="close"></button>
+            </div>
+        </div>
+        <div class="modal create-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Create Story</p>
+                </header>
+                <section class="modal-card-body">
+                    <div class="notification is-warning error-holder">
+                        <span class="error-message"></span>
+                    </div>
+                    <p>Paste a link to a tweet <strong>from the thread you wish to unroll</strong>. You can also unroll directly from Twitter by replying to the tweet and mentioning <a href="https://twitter.com/tidystory" target="_blank">@tidystory</a> in the reply.</p>
+                    <br>
+                    <div class="control">
+                        <input class="input is-medium story-link" type="text" placeholder="Link to tweet">
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-dark send-story">Create Story</button>
+                    <button class="button create-modal-close">Maybe Later</button>
+                </footer>
+                <button class="modal-close create-modal-close is-large" aria-label="close"></button>
+            </div>
+        </div>
+        <div class="modal collection-modal">
+            <div class="modal-background"></div>
+            <div class="modal-card">
+                <header class="modal-card-head">
+                    <p class="modal-card-title">Create Collection</p>
+                </header>
+                <section class="modal-card-body">
+                    <div class="notification is-warning c-error-holder">
+                        <span class="c-error-message"></span>
+                    </div>
+                    <p>Create a collection of stories that people can subscribe to. Upload an image that is <strong>atleast 1150px wide and 350px tall</strong>. You can add or remove stories later.</p>
+                    <br>
+                    <div class="collection-form">
+                        <div class="field">
+                            <label class="label">Title</label>
+                            <div class="control">
+                                <input class="input" id="collection-title" type="text" placeholder="Collection title...">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Genre</label>
+                             <div class="control">
+                                <input class="input" id="collection-genre" type="text" placeholder="Collection genre...">
+                            </div>
+                        </div>
+                        <div class="field">
+                            <label class="label">Description</label>
+                            <div class="control">
+                                <textarea class="textarea" id="collection-desc" placeholder="Collection description..."></textarea>
+                            </div>
+                        </div>
+                        <div class="file has-name is-fullwidth">
+                            <label class="file-label">
+                                <input class="file-input" type="file" id="collection-img" accept="image/*" name="photo">
+                                <span class="file-cta">
+                                    <span class="file-icon">
+                                        <i class="fas fa-upload"></i>
+                                    </span>
+                                    <span class="file-label">
+                                        Choose a picture
+                                    </span>
+                                </span>
+                                <span class="file-name" id="filename-holder">
+                                    No picture selected
+                                </span>
+                            </label>
+                        </div>
+                    </div>
+                </section>
+                <footer class="modal-card-foot">
+                    <button class="button is-dark send-collection">Create Collection</button>
+                    <button class="button collection-modal-close">Maybe Later</button>
+                </footer>
+                <button class="modal-close collection-modal-close is-large" aria-label="close"></button>
+            </div>
+        </div>
+        <script src="https://cdn.plyr.io/3.4.3/plyr.js"></script>
+    </body>
+    <script type="text/javascript" src="/static/js/qv.js"></script>
+    {% assets "logged_js" %}
+    <script type="text/javascript" src="{{ ASSET_URL }}"></script>
+    {% endassets %}
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125829731-1"></script>
+    <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'UA-125829731-1');
+    </script>
+</html>

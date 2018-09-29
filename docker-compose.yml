@@ -1,0 +1,43 @@
+version: '2'
+
+services:
+  redis:
+    image: 'redis:3.2.8'
+    command: redis-server
+    volumes:
+      - 'redis:/data'
+    ports:
+      - '6379:6379'
+
+  website:
+    build: .
+    command: >
+      gunicorn app:app -b 0.0.0.0:5000
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - '.:/tidystory'
+    ports:
+      - '5000:5000'
+
+  celery:
+    build: .
+    command: celery worker -A app.celery --loglevel=info
+    volumes:
+      - '.:/tidystory'
+
+  nginx:
+    restart: always
+    build: ./nginx/
+    ports:
+      - "80:80"
+      - "433:433"
+    volumes:
+      - /www/static
+    volumes_from:
+      - website
+    links:
+      - website:website
+
+volumes:
+  redis:

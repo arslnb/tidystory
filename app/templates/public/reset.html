@@ -1,0 +1,32 @@
+{% extends "public/base.html" %}
+{% block title %}{{title}}{% endblock %}
+{% block content %}
+<main class="has-background-light content-sf center-box">
+    <div class="columns is-centered">
+        <div class="is-one-third column">
+            <div class="box ">
+
+                <h3 class="title is-4">Reset Password</h3>
+
+                <div class="notification is-danger error-holder">
+                    <span class="error-message"></span>
+                </div>
+
+                <div class="field">
+                    <label class="label is-small">Email</label>
+                    <div class="control">
+                            <input class="input email-val" type="email" placeholder="e.g. alexsmith@gmail.com">
+                    </div>
+                </div>
+
+                <br>
+
+                <a class="button is-dark is-fullwidth has-text-weight-semibold reset-pwd">Send reset email</a>
+            </div>
+            <div class="has-text-centered">
+                <a href="/signup" class="f6 link dim underline black dib">Sign up for a new account</a> <span class="dark-gray i f6">or</span> <a href="/signin" class="f6 link underline dim black dib">Sign in to your account</a>
+            </div>
+        </div>
+    </div>
+</main>
+{% endblock %}

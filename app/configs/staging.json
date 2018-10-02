@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "tidystory-staging",
+  "private_key_id": "f5def7ada1cb0cf1c3415195fe0965669af397a6",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvAIBADANBgkqhkiG9w0BAQEFAASCBKYwggSiAgEAAoIBAQDmVKYkXjA+0nXE\nR93wTYxw+vHgcEUjpTCxbLILQpvRKVkbfYb5BZFruPCipL3pxTdp7gRccgS1tx9E\nFZ6XHE+0DWQrFESARpFfmJ9y2XHpPsx+DOv23cUAqT+mWqFibaBqsGuBBQgP8FZC\nRe1NDXjvvQGbPZiXawdP1HXU/xTGNYa79IAqr3l4gljyk8g/vRcR8n+n+rM2QqGC\nUKvRp10y4YbF/HUiXQAH7k4nuivHkAz3xdaQZzLIXayD7nQ2gHLhwFiyo4HoMw9m\n9JblUEWZzukXVaXibiyBB2IoU1Ml77wwQP+5GnM7hj5Dlo9seQkxeC8cx7TGEN2c\nRz803vgjAgMBAAECggEADpheP3S2eEH203K9tgymnGwnvTyarPkP6QDwa/U9vBce\nKIyflme2FiONyrNHaNOl63D5LBsk1ZeehBPIol5ZZe6T99oyGFzLDnSJ5LRcWwGE\njMI925KkTqKVlXGDGM0bOqzQ4HKUrF84NWff8x9/l9VxZMhrmGtgTGcz9kTEU2Y8\ncvbO7v3dK0tP1uUkW9wx1ED4gpa9syp61dSaK5bkyC5QyPihJduPGK4ru09aUpRI\nmXL47nYxmF+OwUB30fYB9ASfuJzVUZjWSyFM+sRlr1mWpLUdUw7S0oAv53/yHwLb\nG/t2zXeUsEqBrRGp7eXVI6XWfJLngP3uo2oIs4ZaMQKBgQD6YWesesfib849tQws\nOqmcfmIKQ6cKiGhRXIBuRFFYRhsdPWYmFEG3h2l/HJygLJt5+iI19u0P8aiTNsnA\n9Oj02w435ENv/VHs71PypkCUrDHkdouw9/XqqqkU6mDN+bS0jaZ7lX9IQHsGyOUR\nPkyhqonlrqormj2E6cu1jnXyswKBgQDrgAuF9IxV8BFA5xrkyo0snABbsVN3aQP0\nN2Vzh93CKL0wLRIVfXR0fcT3OgWT87o3bICuo1UgD4DoomT7G4GIEplH57U3PMPH\nKc47OF7DfRBtdQac8tgkfr1qPpqWQEGZC1qX+OykaxIp/rcaSAms9fGooq83yT05\nMis6Zvbc0QKBgFyBIkGKN1FEh4kq2613mvSTiPtL1WpBzXDJ4TVcDkWz2Q6rgZLu\nBv2cjPCGjKNs96BQNtWDPkCWwvZo1o9wrKTSTeV+cx/sEpmcLoLGw7NqDyDeX2vp\noLSrir6MfWl8KTRP5UNhj14NXKa8EE2Xm85a6ImwR3TGjpYNntKcKJ2bAoGAIOea\nNJRPy24oqv3fhxo6EYKWljk3pVaaA9R9q1/Pf2J71LBnd3M5A1HTZIvJ3btPSJEz\nhbMyoLEp3Ndb7q4QMjgPDLn2Wwp1fG198E5XB0+BLRoN234e7zJ6Os8WgGnoAH9S\noCtavTpspkt9wAFSwMT4iAx7GPtYP5af7aAXXBECgYBm/VG0OtdXGDPqAZ4Wn2WP\npBobvtn6xOIaL22Ah1JrxaQNTTk/vsia2rehSJnU66bE3B8XNdLTP5roPo4XWWnd\no1uEEY9gt5PIOoV7zJel1QjzQ5FfYgHgVsZ/YyJ4h406xPeyKfT0HRBnBCCpiSo8\n8Kej9nVo3WaXZrxxKYNalA==\n-----END PRIVATE KEY-----\n",
+  "client_email": "firebase-adminsdk-4iozn@tidystory-staging.iam.gserviceaccount.com",
+  "client_id": "104007798728448102038",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/firebase-adminsdk-4iozn%40tidystory-staging.iam.gserviceaccount.com"
+}

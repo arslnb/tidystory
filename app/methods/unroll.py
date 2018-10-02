@@ -318,8 +318,8 @@ def uploadImg(filename, uuid):
     return True
 
 def TweetOut(authorHandle, ShortId):
-    options = ["Hey! Here's that story by @{authorHandle} that you requested. Have a nice one 😉 \n\n https://tidystory.com/storm/{ShortId}",
-        "Hi 👋, hope you're excited to check out the story (by @{authorHandle}) you requested. Here it is —\n\n https://tidystory.com/storm/{ShortId}",
-        "Hello! The story by @{authorHandle} is ready for you to read. Check it out here —\n\n https://tidystory.com/storm/{ShortId}"]
+    options = ["Hey! Here's that story by @{authorHandle} that you requested. Have a nice one \n\n https://tidystory.com/storm/{ShortId}",
+        "Hi, hope you're excited to check out the story by @{authorHandle} you requested. Here it is \n\n https://tidystory.com/storm/{ShortId}",
+        "Hello! The story by @{authorHandle} is ready for you to read. Check it out here \n\n https://tidystory.com/storm/{ShortId}"]
     message = random.choice(options)
     return message

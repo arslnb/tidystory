@@ -3,13 +3,13 @@ import os
 current_dir = os.path.dirname(os.path.realpath(__file__))
 
 firebase = {
-    "apiKey": "AIzaSyBXBII6ZqX0jfmgDqebsFoZtaTYuZ2nW7s",
-    "authDomain": "tidystory-6c535.firebaseapp.com",
-    "databaseURL": "https://tidystory-6c535.firebaseio.com",
-    "projectId": "tidystory-6c535",
-    "storageBucket": "tidystory-6c535.appspot.com",
-    "messagingSenderId": "607573635878",
-    "serviceAccount": current_dir + "/service.json",
+    "apiKey": "AIzaSyAUP6XIt5WlkBa7T4bv-lpr9ievs-BDoEM",
+    "authDomain": "tidystory-staging.firebaseapp.com",
+    "databaseURL": "https://tidystory-staging.firebaseio.com",
+    "projectId": "tidystory-staging",
+    "storageBucket": "tidystory-staging.appspot.com",
+    "messagingSenderId": "642137131574",
+    "serviceAccount": current_dir + "/staging.json",
     "databaseAuthVariableOverride": {
         "uid": "f1ffbfc198468df4a68d6bd9d5a46f97"
     }
@@ -34,10 +34,10 @@ appKey = "some-insanely-long-key"
 adminId = "BtDNKZ9zI5ZsnkLbVGbVczQzcpi1"
 
 twitter = {
-    "consumerKey": "BThB1OSHSBEZTN2WN9ZIaBzjH",
-    "consumerSecret": "zfU9gAVxxbwn0bAWQWuoIbTQA7Ct8PIuJcJHCMSesYLkzCfTjJ",
-    "accessKey": "1005509129417326592-sAQgIqsmCoWSYVrwZXOZLracIZPw2D",
-    "accessSecret": "3Ko5i1kcMmm5Y7fU1xmCY74IATUKyRylLQdJD4wkia3Mr"
+    "consumerKey": "fZ5MWwrTEuzK7aX2esvdsRc8f",
+    "consumerSecret": "16xrEzRf0RZJVELNx3pw6ZbeqVCM4cwUUBBa79P7HtlFq6LstQ",
+    "accessKey": "1046292893550473216-pIxur8CYdwsCmHWkEkNjbN3DWi1NUI",
+    "accessSecret": "Xlr4XVbkQrouhUFJyEGQWWo6WIQ4n077m1yzMXBfrbxFU"
 }
 
 cloudinary = {

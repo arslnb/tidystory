@@ -1,0 +1,196 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+Annotation	../app/api.py	/^class Annotation(Resource):$/;"	kind:class	line:91
+Api	../app/__init__.py	/^from flask_restful import Api$/;"	kind:namespace	line:6
+Bundle	../app/methods/bundles.py	/^from flask_assets import Bundle$/;"	kind:namespace	line:1
+Celery	../app/__init__.py	/^from celery import Celery$/;"	kind:namespace	line:7
+EC	../app/methods/unroll.py	/^from selenium.webdriver.support import expected_conditions as EC$/;"	kind:namespace	line:6
+EditCollection	../app/api.py	/^class EditCollection(Resource):$/;"	kind:class	line:209
+Environment	../app/__init__.py	/^from flask_assets import Environment$/;"	kind:namespace	line:3
+Feature	../app/api.py	/^class Feature(Resource):$/;"	kind:class	line:224
+FileStorage	../app/api.py	/^from werkzeug import FileStorage$/;"	kind:namespace	line:9
+FirefoxOptions	../app/methods/unroll.py	/^from selenium.webdriver import FirefoxOptions$/;"	kind:namespace	line:7
+Flask	../app/__init__.py	/^from flask import Flask$/;"	kind:namespace	line:1
+Image	../app/methods/unroll.py	/^from PIL import Image$/;"	kind:namespace	line:13
+ImageDraw	../app/methods/unroll.py	/^from PIL import ImageDraw$/;"	kind:namespace	line:14
+ImageFont	../app/methods/unroll.py	/^from PIL import ImageFont$/;"	kind:namespace	line:15
+ImageOps	../app/methods/unroll.py	/^from PIL import ImageOps$/;"	kind:namespace	line:16
+LoginManager	../app/__init__.py	/^from flask_login import LoginManager$/;"	kind:namespace	line:2
+NewCollection	../app/api.py	/^class NewCollection(Resource):$/;"	kind:class	line:167
+NoSuchElementException	../app/methods/unroll.py	/^from selenium.common.exceptions import NoSuchElementException$/;"	kind:namespace	line:3
+OAuth1	../app/api.py	/^from requests_oauthlib import OAuth1$/;"	kind:namespace	line:21
+Options	../app/methods/unroll.py	/^from selenium.webdriver.chrome.options import Options  $/;"	kind:namespace	line:4
+Resource	../app/api.py	/^from flask_restful import Resource$/;"	kind:namespace	line:2
+Sentry	../app/__init__.py	/^from raven.contrib.flask import Sentry$/;"	kind:namespace	line:9
+SetupTwitter	../app/api.py	/^class SetupTwitter(Resource):$/;"	kind:class	line:298
+Story	../app/api.py	/^class Story(Resource):$/;"	kind:class	line:27
+TweetOut	../app/methods/unroll.py	/^def TweetOut(authorHandle, ShortId):$/;"	kind:function	line:320
+TwitterWebhook	../app/api.py	/^class TwitterWebhook(Resource):$/;"	kind:class	line:238
+User	../app/routes.py	/^from sessions import User$/;"	kind:namespace	line:12
+User	../app/sessions.py	/^class User(UserMixin):$/;"	kind:class	line:16
+UserMixin	../app/sessions.py	/^from flask_login import UserMixin$/;"	kind:namespace	line:4
+WebDriverWait	../app/methods/unroll.py	/^from selenium.webdriver.support.ui import WebDriverWait$/;"	kind:namespace	line:5
+__init__	../app/sessions.py	/^    def __init__(self, uid, displayName, email, photoURL, userData):$/;"	kind:member	line:17
+__init__.py	../app/__init__.py	1;"	kind:file	line:1
+__init__.py	../app/configs/__init__.py	1;"	kind:file	line:1
+__init__.py	../app/methods/__init__.py	1;"	kind:file	line:1
+abort	../app/routes.py	/^from flask import abort$/;"	kind:namespace	line:7
+access_token_key	../app/__init__.py	/^                  access_token_key=config.twitter["accessKey"],$/;"	kind:variable	line:14
+access_token_secret	../app/__init__.py	/^                  access_token_secret=config.twitter["accessSecret"],$/;"	kind:variable	line:15
+adminId	../app/configs/production.py	/^adminId = "BtDNKZ9zI5ZsnkLbVGbVczQzcpi1"$/;"	kind:variable	line:34
+adminId	../app/configs/staging.py	/^adminId = "BtDNKZ9zI5ZsnkLbVGbVczQzcpi1"$/;"	kind:variable	line:34
+annotation	../app/api.py	/^annotation = reqparse.RequestParser()$/;"	kind:variable	line:81
+api	../app/__init__.py	/^import api/;"	kind:namespace	line:42
+api	../app/methods/unroll.py	/^from app import apiTwitter as api$/;"	kind:namespace	line:8
+api.py	../app/api.py	1;"	kind:file	line:1
+apiTwitter	../app/__init__.py	/^apiTwitter = twitter.Api(consumer_key=config.twitter["consumerKey"],$/;"	kind:variable	line:12
+apiTwitter	../app/api.py	/^from app import apiTwitter$/;"	kind:namespace	line:8
+apiTwitter	../app/methods/unroll.py	/^from app import apiTwitter$/;"	kind:namespace	line:18
+apiTwitter	../app/sessions.py	/^from app import apiTwitter$/;"	kind:namespace	line:14
+app	../app/__init__.py	/^app = Flask(__name__)$/;"	kind:variable	line:18
+app	../app/methods/unroll.py	/^from app import app$/;"	kind:namespace	line:19
+app	../app/routes.py	/^from app import app$/;"	kind:namespace	line:1
+app	../app/sessions.py	/^from app import app$/;"	kind:namespace	line:1
+app	../local.py	/^from app import app$/;"	kind:namespace	line:1
+appKey	../app/configs/production.py	/^appKey = "some-insanely-long-key"$/;"	kind:variable	line:33
+appKey	../app/configs/staging.py	/^appKey = "some-insanely-long-key"$/;"	kind:variable	line:33
+assets	../app/__init__.py	/^assets = Environment(app)$/;"	kind:variable	line:25
+assets	../app/methods/bundles.py	/^from app import assets$/;"	kind:namespace	line:3
+auth	../app/sessions.py	/^from firebase_admin import auth$/;"	kind:namespace	line:8
+base64	../app/api.py	/^import base64$/;"	kind:namespace	line:15
+bundles	../app/methods/__init__.py	/^import bundles$/;"	kind:namespace	line:1
+bundles.py	../app/methods/bundles.py	1;"	kind:file	line:1
+celery	../app/__init__.py	/^celery = Celery(app.name, broker=app.config['CELERY_BROKER_URL'])$/;"	kind:variable	line:37
+celery	../app/methods/unroll.py	/^from app import celery$/;"	kind:namespace	line:12
+cleanThreadObject	../app/methods/unroll.py	/^def cleanThreadObject(storm, stormId, is_anon):$/;"	kind:function	line:86
+cloudinary	../app/configs/production.py	/^cloudinary = {$/;"	kind:variable	line:43
+cloudinary	../app/configs/staging.py	/^cloudinary = {$/;"	kind:variable	line:43
+cloudinary	../app/methods/unroll.py	/^import cloudinary$/;"	kind:namespace	line:20
+collection	../app/api.py	/^collection = reqparse.RequestParser()$/;"	kind:variable	line:161
+collection	../app/routes.py	/^def collection(uid):$/;"	kind:function	line:16
+config	../app/__init__.py	/^from configs import staging as config$/;"	kind:namespace	line:5
+config	../app/api.py	/^from configs import staging as config$/;"	kind:namespace	line:6
+config	../app/methods/unroll.py	/^from app.configs import staging as config$/;"	kind:namespace	line:10
+config	../app/routes.py	/^from configs import staging as config$/;"	kind:namespace	line:2
+config	../app/sessions.py	/^from app.configs import staging as config$/;"	kind:namespace	line:3
+consumer_secret	../app/__init__.py	/^                  consumer_secret=config.twitter["consumerSecret"],$/;"	kind:variable	line:13
+crc_parser	../app/api.py	/^crc_parser = reqparse.RequestParser()$/;"	kind:variable	line:235
+cred	../app/__init__.py	/^cred = credentials.Certificate(config.firebase['serviceAccount'])$/;"	kind:variable	line:31
+credentials	../app/__init__.py	/^from firebase_admin import credentials$/;"	kind:namespace	line:4
+current_dir	../app/configs/production.py	/^current_dir = os.path.dirname(os.path.realpath(__file__))$/;"	kind:variable	line:3
+current_dir	../app/configs/staging.py	/^current_dir = os.path.dirname(os.path.realpath(__file__))$/;"	kind:variable	line:3
+current_user	../app/api.py	/^from flask_login import current_user$/;"	kind:namespace	line:4
+current_user	../app/routes.py	/^from flask_login import current_user$/;"	kind:namespace	line:4
+datetime	../app/api.py	/^import datetime$/;"	kind:namespace	line:10
+datetime	../app/methods/unroll.py	/^import datetime$/;"	kind:namespace	line:23
+datetime	../app/routes.py	/^import datetime$/;"	kind:namespace	line:13
+db	../app/api.py	/^from firebase_admin import db$/;"	kind:namespace	line:7
+db	../app/methods/unroll.py	/^from firebase_admin import db$/;"	kind:namespace	line:11
+db	../app/routes.py	/^from firebase_admin import db$/;"	kind:namespace	line:6
+db	../app/sessions.py	/^from firebase_admin import db$/;"	kind:namespace	line:7
+delete	../app/api.py	/^    def delete(self):$/;"	kind:member	line:136
+delete	../app/api.py	/^    def delete(self):$/;"	kind:member	line:312
+delete	../app/api.py	/^delete = reqparse.RequestParser()$/;"	kind:variable	line:86
+discover	../app/routes.py	/^def discover():$/;"	kind:function	line:67
+endpoints	../app/__init__.py	/^endpoints = Api(app)$/;"	kind:variable	line:23
+endpoints	../app/api.py	/^from app import endpoints$/;"	kind:namespace	line:1
+firebase	../app/configs/production.py	/^firebase = {$/;"	kind:variable	line:5
+firebase	../app/configs/staging.py	/^firebase = {$/;"	kind:variable	line:5
+firebase_admin	../app/__init__.py	/^import firebase_admin$/;"	kind:namespace	line:8
+generateCollectionImg	../app/methods/unroll.py	/^def generateCollectionImg(collection):$/;"	kind:function	line:234
+generateImg	../app/methods/unroll.py	/^def generateImg(story):$/;"	kind:function	line:196
+get	../app/api.py	/^    def get(self):$/;"	kind:member	line:239
+get	../app/api.py	/^    def get(self):$/;"	kind:member	line:299
+get	../app/api.py	/^    def get(self, uid):$/;"	kind:member	line:225
+getListOfIds	../app/methods/unroll.py	/^def getListOfIds(tweet_id, handle, stormId, is_anon):$/;"	kind:function	line:29
+getTweetBreakDown	../app/methods/unroll.py	/^def getTweetBreakDown(tweetInfo):$/;"	kind:function	line:136
+get_filter	../app/methods/bundles.py	/^from webassets.filter import get_filter$/;"	kind:namespace	line:2
+hashlib	../app/api.py	/^import hashlib$/;"	kind:namespace	line:16
+hmac	../app/api.py	/^import hmac$/;"	kind:namespace	line:17
+home	../app/routes.py	/^def home():$/;"	kind:function	line:32
+internal_server_error	../app/routes.py	/^def internal_server_error(e):$/;"	kind:function	line:122
+is_active	../app/sessions.py	/^    def is_active(self):$/;"	kind:member	line:24
+is_anonymous	../app/sessions.py	/^    def is_anonymous(self):$/;"	kind:member	line:27
+is_authenticated	../app/sessions.py	/^    def is_authenticated(self):$/;"	kind:member	line:30
+json	../app/api.py	/^import json$/;"	kind:namespace	line:18
+jsonify	../app/sessions.py	/^from flask import jsonify$/;"	kind:namespace	line:10
+landing_js	../app/methods/bundles.py	/^landing_js = Bundle($/;"	kind:variable	line:9
+load_user	../app/sessions.py	/^def load_user(user_id):$/;"	kind:function	line:34
+local.py	../local.py	1;"	kind:file	line:1
+logged_js	../app/methods/bundles.py	/^logged_js = Bundle($/;"	kind:variable	line:16
+login	../app/sessions.py	/^def login():$/;"	kind:function	line:97
+login_manager	../app/__init__.py	/^login_manager = LoginManager()$/;"	kind:variable	line:27
+login_manager	../app/sessions.py	/^from app import login_manager$/;"	kind:namespace	line:2
+login_required	../app/routes.py	/^from flask_login import login_required$/;"	kind:namespace	line:5
+login_user	../app/sessions.py	/^from flask_login import login_user$/;"	kind:namespace	line:5
+logout_user	../app/sessions.py	/^from flask_login import logout_user$/;"	kind:namespace	line:6
+lp	../app/configs/production.py	/^lp = {$/;"	kind:variable	line:49
+lp	../app/configs/staging.py	/^lp = {$/;"	kind:variable	line:49
+make_response	../app/routes.py	/^from flask import make_response$/;"	kind:namespace	line:11
+metaBase	../app/configs/production.py	/^metaBase = {$/;"	kind:variable	line:25
+metaBase	../app/configs/staging.py	/^metaBase = {$/;"	kind:variable	line:25
+methods	../app/__init__.py	/^import methods$/;"	kind:namespace	line:40
+modify	../app/api.py	/^modify = reqparse.RequestParser()$/;"	kind:variable	line:205
+now	../app/methods/unroll.py	/^now = datetime.datetime.now()$/;"	kind:variable	line:26
+os	../app/api.py	/^import os$/;"	kind:namespace	line:14
+os	../app/configs/production.py	/^import os$/;"	kind:namespace	line:1
+os	../app/configs/staging.py	/^import os$/;"	kind:namespace	line:1
+os	../app/methods/unroll.py	/^import os  $/;"	kind:namespace	line:1
+output	../app/methods/bundles.py	/^    output='bundles\/js\/landing.js'$/;"	kind:variable	line:13
+output	../app/methods/bundles.py	/^    output='bundles\/js\/logged.js'$/;"	kind:variable	line:19
+page_not_found	../app/routes.py	/^def page_not_found(e):$/;"	kind:function	line:118
+parser	../app/api.py	/^parser = reqparse.RequestParser()$/;"	kind:variable	line:23
+post	../app/api.py	/^    def post(self):$/;"	kind:member	line:168
+post	../app/api.py	/^    def post(self):$/;"	kind:member	line:251
+post	../app/api.py	/^    def post(self):$/;"	kind:member	line:28
+post	../app/api.py	/^    def post(self):$/;"	kind:member	line:92
+production.py	../app/configs/production.py	1;"	kind:file	line:1
+put	../app/api.py	/^    def put(self):$/;"	kind:member	line:305
+put	../app/api.py	/^    def put(self, uid):$/;"	kind:member	line:210
+random	../app/methods/unroll.py	/^import random$/;"	kind:namespace	line:24
+re	../app/api.py	/^import re$/;"	kind:namespace	line:13
+redirect	../app/routes.py	/^from flask import redirect$/;"	kind:namespace	line:8
+redirect	../app/sessions.py	/^from flask import redirect$/;"	kind:namespace	line:12
+render_template	../app/methods/unroll.py	/^from flask import render_template$/;"	kind:namespace	line:17
+render_template	../app/routes.py	/^from flask import render_template$/;"	kind:namespace	line:3
+render_template	../app/sessions.py	/^from flask import render_template$/;"	kind:namespace	line:9
+reqparse	../app/api.py	/^from flask_restful import reqparse$/;"	kind:namespace	line:3
+request	../app/api.py	/^from flask import request$/;"	kind:namespace	line:20
+request	../app/routes.py	/^from flask import request$/;"	kind:namespace	line:10
+request	../app/sessions.py	/^from flask import request$/;"	kind:namespace	line:11
+requests	../app/api.py	/^import requests$/;"	kind:namespace	line:19
+requests	../app/methods/unroll.py	/^import requests$/;"	kind:namespace	line:22
+reset	../app/sessions.py	/^def reset():$/;"	kind:function	line:105
+routes	../app/__init__.py	/^import routes$/;"	kind:namespace	line:41
+routes.py	../app/routes.py	1;"	kind:file	line:1
+searchResults	../app/routes.py	/^def searchResults():$/;"	kind:function	line:79
+sentry	../app/__init__.py	/^sentry = Sentry(app, dsn='https:\/\/340895e4e4d9400e850bcab30058be3d:f18ab2bde06440e9950a762e5fe93fec@sentry.io\/1282333')$/;"	kind:variable	line:21
+sessions.py	../app/sessions.py	1;"	kind:file	line:1
+showPrivacy	../app/routes.py	/^def showPrivacy():$/;"	kind:function	line:126
+showStorm	../app/routes.py	/^def showStorm(uid):$/;"	kind:function	line:49
+showTerms	../app/routes.py	/^def showTerms():$/;"	kind:function	line:130
+signout	../app/sessions.py	/^def signout():$/;"	kind:function	line:109
+signup	../app/sessions.py	/^def signup():$/;"	kind:function	line:101
+sitemap	../app/routes.py	/^def sitemap():$/;"	kind:function	line:93
+staging	../app/configs/__init__.py	/^import staging/;"	kind:namespace	line:1
+staging.py	../app/configs/staging.py	1;"	kind:file	line:1
+textwrap	../app/methods/unroll.py	/^import textwrap$/;"	kind:namespace	line:21
+time	../app/api.py	/^import time$/;"	kind:namespace	line:12
+tweet_mode	../app/__init__.py	/^                  tweet_mode="extended")$/;"	kind:variable	line:16
+twitter	../app/__init__.py	/^import twitter$/;"	kind:namespace	line:10
+twitter	../app/configs/production.py	/^twitter = {$/;"	kind:variable	line:36
+twitter	../app/configs/staging.py	/^twitter = {$/;"	kind:variable	line:36
+u	../app/api.py	/^from app.methods import unroll as u$/;"	kind:namespace	line:5
+unroll	../app/methods/__init__.py	/^import unroll/;"	kind:namespace	line:2
+unroll.py	../app/methods/unroll.py	1;"	kind:file	line:1
+upload	../app/methods/unroll.py	/^from cloudinary.uploader import upload$/;"	kind:namespace	line:9
+uploadImg	../app/methods/unroll.py	/^def uploadImg(filename, uuid):$/;"	kind:function	line:292
+url_for	../app/routes.py	/^from flask import url_for$/;"	kind:namespace	line:9
+url_for	../app/sessions.py	/^from flask import url_for$/;"	kind:namespace	line:13
+urllib	../app/api.py	/^import urllib$/;"	kind:namespace	line:11
+user_sessions	../app/sessions.py	/^def user_sessions():$/;"	kind:function	line:46
+webdriver	../app/methods/unroll.py	/^from selenium import webdriver  $/;"	kind:namespace	line:2

@@ -6,23 +6,23 @@
         <title>{{collection.title}} - TidyStory</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Search Engine -->
-        <meta name="description" content="{{collection.desc.text}}">
+        <meta name="description" content="{{collection.desc}}">
         <meta name="image" content="{{collection.meta_url}}">
         <!-- Schema.org for Google -->
-        <meta itemprop="name" content="{{collection.title}} on TidyStory">
-        <meta itemprop="description" content="{{collection.desc.text}}">
+        <meta itemprop="name" content="{{collection.title}}">
+        <meta itemprop="description" content="{{collection.desc}}">
         <meta itemprop="image" content="{{collection.meta_url}}">
         <!-- Twitter -->
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="{{collection.title}} on TidyStory">
-        <meta name="twitter:description" content="{{collection.desc.text}}">
+        <meta name="twitter:title" content="{{collection.title}}">
+        <meta name="twitter:description" content="{{collection.desc}}">
         <meta name="twitter:site" content="@tidystory">
         <meta name="twitter:image:src" content="{{collection.meta_url}}">
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:image:alt" content="{{collection.title}}">
         <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-        <meta name="og:title" content="{{collection.title}} on TidyStory">
-        <meta name="og:description" content="{{collection.desc.text}}">
+        <meta name="og:title" content="{{collection.title}}">
+        <meta name="og:description" content="{{collection.desc}}">
         <meta name="og:image" content="{{collection.meta_url}}">
         <meta name="og:url" content="https://tidystory.com/collection/{{collection.collection_id}}">
         <meta name="og:site_name" content="Tidystory">
@@ -33,10 +33,7 @@
         <!-- Stylesheets -->
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.2.0/css/all.css" integrity="sha384-hWVjflwFxL6sNzntih27bfxkr27PmbbK/iSvJ+a4+0owXq79v+lsFkW54bOGbiDQ" crossorigin="anonymous">
         <link rel="stylesheet" href="/static/css/bulma.css">
-        <link rel="stylesheet" href="/static/css/qv.css">
-        <link rel="stylesheet" href="/static/css/plyr.css">
         <link rel="stylesheet" href="/static/css/style.css">
-        <link href="https://fonts.googleapis.com/css?family=PT+Serif" rel="stylesheet">
         <!-- Favicons -->
         <link rel="apple-touch-icon" sizes="180x180" href="/static/img/meta/apple-touch-icon.png">
         <link rel="icon" type="image/png" sizes="32x32" href="/static/img/meta/favicon-32x32.png">
@@ -48,8 +45,8 @@
         <meta name="msapplication-config" content="/static/img/meta/browserconfig.xml">
         <meta name="theme-color" content="#000000">
     </head>
-    <body class="sans-serif push-sf">
-        <nav class="navbar has-shadow is-spaced">
+    <body class="sans-serif push-sf has-navbar-fixed-top">
+        <nav class="navbar has-shadow is-spaced is-fixed-top">
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
@@ -194,31 +191,44 @@
               </div>      
             </div>
           </main>
-        <footer class="footer">
+          <footer class="c-footer">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-4">
-                        <h4 class="bd-footer-title">
-                            <strong xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">tidystory</strong> on Twitter</a>.
-                        </h4>
-                        <div class="bd-footer-iframe">
-                            <a href="https://twitter.com/tidystory?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="true">Follow @tidystory</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
+                    <div class="column is-6">
+                        <p class="buttons">
+                            <a class="button is-info is-small" href="https://twitter.com/tidystory" target="_blank">
+                            <span class="icon is-small">
+                                <i class="fab fa-twitter"></i>
+                            </span>
+                            <span>@tidystory on Twitter</span>
+                            </a>
+                            <a class="button is-dark is-small" href="https://facebook.com/tidystory" target="_blank">
+                                <span class="icon is-small">
+                                <i class="fab fa-facebook"></i>
+                                </span>
+                                <span>TidyStory on Facebook</span>
+                            </a>
+                            <span class="mfixedbox">
+                            <a class="button is-black is-small" href="/terms">
+                                <span>Terms of Service</span>
+                            </a>
+                            <a class="button is-black is-small" href="/privacy">
+                                <span>Privacy Policy</span>
+                            </a>
+                            </span>
+                        </p>
                     </div>
-                    <div class="column is-4">
-                        <h4 class="bd-footer-title">
-                            <strong>tidystory</strong> on Facebook
-                        </h4>
-                        
-                        <div class="bd-footer-iframe">
-                            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Ftidystory&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=1791870674256874" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <div class="column is-4">
-                        <div class="bd-footer-tsp">
-                                <a href="/terms">Terms of Service</a> &bull;
-                                <a rel="license" href="/privacy">Privacy Policy</a>
-                        </div>
+                    <div class="column is-6">
+                        <p class="buttons is-right">
+                        <span class="dfixedbox">
+                            <a class="button is-black is-small" href="/terms">
+                            <span>Terms of Service</span>
+                            </a>
+                            <a class="button is-black is-small" href="/privacy">
+                            <span>Privacy Policy</span>
+                            </a>
+                        </span>
+                        </p>
                     </div>
                 </div>
             </div>

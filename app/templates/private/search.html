@@ -1,54 +1,17 @@
 {% extends "private/base.html" %}
 {% block title %}{{title}}{% endblock %}
 {% block content %}
-<link rel='stylesheet' href='https://unpkg.com/emoji.css/dist/emoji.min.css'>
 <div class="has-background-white">
   <main class="content-sf storm-spacer container">
       <div class="welcome-text">
-        <h1 class="title is-1">Hello there, {{user.displayName}} <span class="ec ec-wave"></span></h1>
-        <h2 class="title is-3">This is your personalized summary page. You can jump directly ahead to <a href="#stories-area">your stories</a>, <a href="#collections-area">your collections</a>, or even check out the <a href="#featured-area">featured collection</a> first.</h2>
-        <div class="semi-hr"></div>
-      </div>
-      
-      <div class="featured-area area" id="featured-area">
-        {% if featured %}
-        <div class="columns">
-            <div class="column is-half gross-stitle">
-                <span class="tag is-info is-medium">Featured</span>
-                {% if featured.title|length > 52 %}
-                <h2>{{featured.title[:52]}}...</h2>
-                {% else %}
-                <h2>{{featured.title}}</h2>
-                {% endif %}
-                <p>{{featured.desc[:90]}}... <a href="/collection/{{featured.collection_id}}">Read More</a></p>
-                <h5>By {{featured.author.name}}</h5>
-            </div>
-            <div class="column is-half">
-              <div class="featured-img" style="background-image: url('{{featured.image_url}}')"></div>
-            </div>
-        </div>          
-        {% else %}
-        <h4 class="gross-title title is-5">Featured</h4>
-        <div class="no-stories-badge">
-            <h2>Nothing here yet</h2>
-            <p>Create a collection or <a href="/discover">check out some cool ones here</a></p>
-        </div>
-        {% endif %}
+        <h1 class="title is-1">Search results for "{{keyword}}"...</h1>
         <div class="semi-hr"></div>
       </div>
 
       <div class="stories-area area" id="stories-area">
         <div class="level">
           <div class="level-left">
-            <h4 class="gross-title title is-3">Your Stories</h4>
-          </div>
-          <div class="level-right">
-            <a class="button is-small is-dark is-outlined create-story">
-                <span>Create Story</span>
-                <span class="icon is-small">
-                  <i class="fas fa-plus"></i>
-                </span>
-            </a>
+            <h4 class="gross-title title is-3">Stories</h4>
           </div>
         </div>
         <div class="columns is-multiline">   
@@ -85,7 +48,7 @@
           {% else %}
           <div class="no-stories-badge">
             <h2>Nothing here yet</h2>
-            <p>Create a story or <a href="/discover">check out some cool ones here</a></p>
+            <p>Create a story or <a href="/">check out some cool ones here</a></p>
           </div>
           {% endif %}
           </div>
@@ -94,15 +57,7 @@
       <div class="collections-area area" id="collections-area">
           <div class="level">
               <div class="level-left">
-                <h4 class="gross-title title is-3">Your Collections</h4>
-              </div>
-              <div class="level-right">
-                  <a class="button is-small is-dark is-outlined create-collection">
-                      <span>Create Collection</span>
-                      <span class="icon is-small">
-                        <i class="fas fa-plus"></i>
-                      </span>
-                  </a>
+                <h4 class="gross-title title is-3">Collections</h4>
               </div>
             </div>
           <div class="columns is-multiline">    
@@ -128,7 +83,7 @@
               {% else %}
               <div class="no-stories-badge">
                   <h2>Nothing here yet</h2>
-                  <p>Create a collection or <a href="/discover">check out some cool ones here</a></p>
+                  <p>Create a collection or <a href="/">check out some cool ones here</a></p>
               </div>
               {% endif %}
           </div>

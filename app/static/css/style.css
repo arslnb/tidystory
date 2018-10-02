@@ -3,6 +3,12 @@ body{
     overflow-x: hidden;
 }
 
+.c-footer{
+    background: #444;
+    padding: 20px 10px;
+    color: #FFF;
+}
+
 .push-sf{
     display: flex;
     min-height: 100vh;
@@ -352,6 +358,14 @@ body{
     font-size: 0.7em;
 }
 
+.mfixedbox{
+    display: none;
+}
+
+.dfixedbox{
+    display: block;
+}
+
 .gross-stitle h4{
     text-transform: uppercase;
     font-weight: 600;
@@ -526,14 +540,82 @@ body{
 }
 
 @media only screen and (max-width: 687px) {
+    .title-block{
+        margin-bottom: 20px;
+    }
     .storm-title{
-        font-size: 2.4em;
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        line-height: 1.3em;
+    }
+    .author-name{
+        font-size: 1em;
+    }
+    .sh-storm{
+        font-size: 1.2em;
+        line-height: 1.5em;
+        margin-bottom: 0px;
+        font-style: italic;
     }
     .title-block{
         margin-top: 20px;
     }
+    .featured-content{
+        padding: 20px 10px;
+    }
+    .gross-hp-title h2{
+        font-size: 1.8em;
+    }
+    .storm-spacer{
+        padding-bottom: 0px;
+    }
+    .featured-img{
+        height: 190px;
+    }
+    .main-area{
+        padding: 10px;
+    }
+    .mfixedbox{
+        display: block;
+    }
+    .dfixedbox{
+        display: none;
+    }
+    .cbox{
+        padding: 0.7rem !important;
+    }
+    .collection-header{
+        padding: 20px 10px;
+    }
+    .collection-header .subtitle{
+        font-size: 1rem;
+    }
+    .collection-header h1{
+        font-size: 2.2rem !important;
+    }
+    .cover-img{
+        height: 200px;
+    }
+    .share-c-bar{
+        margin-top: 0px;
+    }
+    .collection-desc{
+        margin-top: 0px;
+    }
+    .welcome-text{
+        padding: 20px 10px;
+    }
+    .welcome-text h1{
+        font-size: 1.5em !important;
+        margin-bottom: 0px !important;
+    }
+    .welcome-text h2{
+        font-size: 1.2em !important;
+    }
+    .semi-hr{
+        margin-top: 20px;
+    }
 }
-
 
 @media only screen and (min-width: 1000px) {
     .tweet-action .annotate-btn{

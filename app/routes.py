@@ -84,7 +84,8 @@ def searchResults():
     collections = db.reference('collections').order_by_child('title').start_at(keyword).end_at(keyword+"\uf8ff").get()
     if current_user.is_authenticated:
         return render_template('private/search.html', user = current_user, 
-            stories = stories, collections = collections, title = "Search - ")
+            storms = stories, keyword = keyword, collections = collections, 
+            title = "Search - ")
     else:
         return render_template('public/search.html', storms = stories, 
             collections = collections, keyword = keyword, title = "Search - ")

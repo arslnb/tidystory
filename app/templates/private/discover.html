@@ -5,28 +5,28 @@
         <meta http-equiv="x-ua-compatible" content="ie=edge">
         <!-- COMMON TAGS -->
         <meta charset="utf-8">
-        <title>Discover - Tidy Story</title>
+        <title>Discover - TidyStory</title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <!-- Search Engine -->
-        <meta name="description" content="Tidystory let's you add a new layer of insight to your favorite Twitter threads by putting them on a single easy-to-read and annotatable webpage. We find and collect stories that you love.">
+        <meta name="description" content="Find and collect social media posts at one place.">
         <meta name="image" content="/static/img/mtidystory.png">
         <!-- Schema.org for Google -->
-        <meta itemprop="name" content="Tidy Story">
-        <meta itemprop="description" content="Tidystory let's you add a new layer of insight to your favorite Twitter threads by putting them on a single easy-to-read and annotatable webpage. We find and collect stories that you love.">
+        <meta itemprop="name" content="TidyStory">
+        <meta itemprop="description" content="Find and collect social media posts at one place.">
         <meta itemprop="image" content="/static/img/mtidystory.png">
         <!-- Twitter -->
         <meta name="twitter:card" content="summary">
-        <meta name="twitter:title" content="Tidy Story">
-        <meta name="twitter:description" content="Tidystory let's you add a new layer of insight to your favorite Twitter threads by putting them on a single easy-to-read and annotatable webpage. We find and collect stories that you love.">
+        <meta name="twitter:title" content="TidyStory">
+        <meta name="twitter:description" content="Find and collect social media posts at one place.">
         <meta name="twitter:site" content="@tidystory">
-        <meta name="twitter:creator" content="@arsalanbashir">
+        <meta name="twitter:creator" content="@tidystory">
         <meta name="twitter:image:src" content="/static/img/mtidystory.png">
         <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-        <meta name="og:title" content="Tidy Story">
-        <meta name="og:description" content="Tidystory let's you add a new layer of insight to your favorite Twitter threads by putting them on a single easy-to-read and annotatable webpage. We find and collect stories that you love.">
+        <meta name="og:title" content="TidyStory">
+        <meta name="og:description" content="Find and collect social media posts at one place.">
         <meta name="og:image" content="/static/img/mtidystory.png">
         <meta name="og:url" content="https://tidystory.com">
-        <meta name="og:site_name" content="Tidystory">
+        <meta name="og:site_name" content="TidyStory">
         <meta name="og:locale" content="en_US">
         <meta name="fb:admins" content="100009162029085">
         <meta name="fb:app_id" content="1791870674256874">
@@ -45,8 +45,8 @@
         <meta name="msapplication-config" content="/static/img/meta/browserconfig.xml">
         <meta name="theme-color" content="#000000">
     </head>
-    <body class="sans-serif push-sf">
-        <nav class="navbar is-black is-spaced">
+    <body class="sans-serif push-sf has-navbar-fixed-top">
+        <nav class="navbar is-black is-spaced is-fixed-top">
             <div class="container">
                 <div class="navbar-brand">
                     <a class="navbar-item" href="/">
@@ -61,11 +61,11 @@
                 <div class="navbar-menu" id="navMenu">
                     <div class="navbar-end">
                         <input class="input navbar-item l-space search-bar sb-dark" id="searchbar" type="search" placeholder="Search...">
-                        <a class="navbar-item button is-dark l-space" href="/discover">
+                        <a class="navbar-item button is-dark l-space" href="/">
                             <span class="icon has-text-warning">
                                 <i class="fas fa-star"></i>
                             </span>
-                            <span>Discover</span>
+                            <span>My Stories</span>
                         </a>
                         <a class="navbar-item button is-dark l-space create-story" href="#">Create Story</a>
                         <div class="navbar-item has-dropdown is-hoverable l-space">
@@ -99,6 +99,9 @@
                 {% if featured %}
                 <div class="columns">
                     <div class="column is-half gross-hp-title">
+                        <div class="mfixedbox">
+                         <span class="tag is-dark is-small">Featured</span>
+                        </div>
                         {% if featured.title|length > 52 %}
                         <h2>{{featured.title[:52]}}...</h2>
                         {% else %}
@@ -124,11 +127,14 @@
         <div class="container main-area">
           <div class="columns">
             <div class="column is-7">
-              <div class="box fixed-box">
-                <span>View Popular Collections</span> or <a href="/signin">Sign in to create a collection</a>
+              <div class="box dfixedbox fixed-box">
+                <span>View Popular Collections</span> or <a href="/">Manage your stories and collections</a>
               </div>
-              {% for collection in collections.values() %}
-              <div class="box">
+              <div class="box mfixedbox fixed-box">
+                <span>Popular Collections</span>
+              </div>
+              {% for collection in collections.values()|sort(attribute='time')|reverse %}
+              <div class="box cbox">
                   <a href="/collection/{{collection.collection_id}}">
                   <figure class="image is-2by1 collection-img">
                     <img src="{{collection.image_url}}" alt="Placeholder image">
@@ -147,7 +153,7 @@
               {% endfor %}
             </div>
             <div class="column is-5">
-                <div class="box">
+                <div class="box cbox">
                   <h1 class="sb-box-title">Recent <span>Stories</span></h1>
                   <ul>
                     {% for story in storms.values()|sort(attribute='timestamp')|reverse %}
@@ -171,7 +177,7 @@
                     {% endfor %}
                   </ul>
                 </div>
-                <div class="box">
+                <div class="box cbox">
                   <h1 class="sb-box-title">Trending <span>Stories</span></h1>
                   <ul>
                     {% for story in active.values()|sort(attribute='totalAnnotations')|reverse %}
@@ -190,96 +196,47 @@
                     {% endfor %}
                   </ul>
                 </div>
-                <div class="box">
-                  <h1 class="sb-box-title">Other Links</h1>
-                  <ul>
-                    <li class="sb-item">
-                      <a href="https://twitter.com/tidystory" target="_blank">
-                        <article class="media">
-                          <figure class="media-left">
-                            <span class="icon">
-                              <i class="fab fa-twitter"></i>
-                            </span>
-                          </figure>
-                          <div class="media-content">
-                            <div class="content">
-                              <p class="list-item-counter">
-                                <strong>Follow @tidystory on Twitter</strong><br>
-                                <span>Get the latest stories, create and share stories you love with a few clicks</span>
-                              </p>
-                            </div>
-                          </div>
-                        </article>
-                      </a>
-                    </li>
-                    <li class="sb-item">
-                      <a href="https://facebook.com/tidystory" target="_blank">
-                        <article class="media">
-                          <figure class="media-left">
-                            <span class="icon">
-                              <i class="fab fa-facebook-f"></i>
-                            </span>
-                          </figure>
-                          <div class="media-content">
-                            <div class="content">
-                              <p class="list-item-counter">
-                                <strong>Like Tidystory on Facebook</strong><br>
-                                <span>Get the most interesting stories on your timeline</span>
-                              </p>
-                            </div>
-                          </div>
-                        </article>
-                      </a>
-                    </li>
-                    <li class="sb-item">
-                      <a href="mailto:concierge@tidystory.com" target="_blank">
-                        <article class="media">
-                          <figure class="media-left">
-                            <span class="icon">
-                              <i class="fas fa-at"></i>
-                            </span>
-                          </figure>
-                          <div class="media-content">
-                            <div class="content">
-                              <p class="list-item-counter">
-                                <strong>Write to us</strong><br>
-                                <span>Feedback, comments, or just to say hello!</span>
-                              </p>
-                            </div>
-                          </div>
-                        </article>
-                      </a>
-                    </li>
-                  </ul>
-                </div>
             </div>
           </div>
         </div>
-        <footer class="footer">
+        <footer class="c-footer">
             <div class="container">
                 <div class="columns">
-                    <div class="column is-4">
-                        <h4 class="bd-footer-title">
-                            <strong xmlns:dct="http://purl.org/dc/terms/" href="http://purl.org/dc/dcmitype/Text" property="dct:title" rel="dct:type">tidystory</strong> on Twitter</a>.
-                        </h4>
-                        <div class="bd-footer-iframe">
-                            <a href="https://twitter.com/tidystory?ref_src=twsrc%5Etfw" class="twitter-follow-button" data-size="large" data-show-count="true">Follow @tidystory</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-                        </div>
+                    <div class="column is-6">
+                        <p class="buttons">
+                          <a class="button is-info is-small" href="https://twitter.com/tidystory" target="_blank">
+                            <span class="icon is-small">
+                              <i class="fab fa-twitter"></i>
+                            </span>
+                            <span>@tidystory on Twitter</span>
+                          </a>
+                          <a class="button is-dark is-small" href="https://facebook.com/tidystory" target="_blank">
+                              <span class="icon is-small">
+                                <i class="fab fa-facebook"></i>
+                              </span>
+                              <span>TidyStory on Facebook</span>
+                          </a>
+                          <span class="mfixedbox">
+                          <a class="button is-black is-small" href="/terms">
+                              <span>Terms of Service</span>
+                          </a>
+                          <a class="button is-black is-small" href="/privacy">
+                              <span>Privacy Policy</span>
+                          </a>
+                          </span>
+                        </p>
                     </div>
-                    <div class="column is-4">
-                        <h4 class="bd-footer-title">
-                            <strong>tidystory</strong> on Facebook
-                        </h4>
-                        
-                        <div class="bd-footer-iframe">
-                            <iframe src="https://www.facebook.com/plugins/like.php?href=https%3A%2F%2Fwww.facebook.com%2Ftidystory&width=450&layout=standard&action=like&size=large&show_faces=true&share=true&height=80&appId=1791870674256874" width="450" height="80" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowTransparency="true" allow="encrypted-media"></iframe>
-                        </div>
-                    </div>
-                    <div class="column is-4">
-                        <div class="bd-footer-tsp">
-                            <a href="/terms">Terms of Service</a> &bull;
-                            <a rel="license" href="/privacy">Privacy Policy</a>
-                        </div>
+                    <div class="column is-6">
+                      <p class="buttons is-right">
+                        <span class="dfixedbox">
+                          <a class="button is-black is-small" href="/terms">
+                            <span>Terms of Service</span>
+                          </a>
+                          <a class="button is-black is-small" href="/privacy">
+                            <span>Privacy Policy</span>
+                          </a>
+                        </span>
+                      </p>
                     </div>
                 </div>
             </div>
@@ -308,17 +265,18 @@
             </div>
         </div>
     </body>
-    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.0.4/firebase-auth.js"></script>
     {% assets "landing_js" %}
     <script type="text/javascript" src="{{ ASSET_URL }}"></script>
     {% endassets %}
     <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125829731-1"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-125829731-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
 
-    gtag('config', 'UA-125829731-1');
-  </script>
+      gtag('config', 'UA-125829731-1');
+    </script>
 </html>

@@ -1,8 +1,8 @@
 const firebaseConfig = {
-    apiKey: "AIzaSyBXBII6ZqX0jfmgDqebsFoZtaTYuZ2nW7s",
-    authDomain: "tidystory-6c535.firebaseapp.com",
-    databaseURL: "https://tidystory-6c535.firebaseio.com",
-    projectId: "tidystory-6c535",
-    storageBucket: "tidystory-6c535.appspot.com",
-    messagingSenderId: "607573635878"
+    apiKey: "AIzaSyAUP6XIt5WlkBa7T4bv-lpr9ievs-BDoEM",
+    authDomain: "tidystory-staging.firebaseapp.com",
+    databaseURL: "https://tidystory-staging.firebaseio.com",
+    projectId: "tidystory-staging",
+    storageBucket: "tidystory-staging.appspot.com",
+    messagingSenderId: "642137131574"
 };

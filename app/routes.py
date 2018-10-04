@@ -1,5 +1,5 @@
 from app import app
-from configs import staging as config
+from configs import production as config
 from flask import render_template
 from flask_login import current_user
 from flask_login import login_required
@@ -12,22 +12,24 @@ from flask import make_response
 from sessions import User
 import datetime
 
-@app.route('/collection/<uid>')
-def collection(uid):
-    if current_user.is_authenticated:
-        collection = db.reference('collections/' + str(uid)).get()
-        if collection:
-            return render_template('private/collection.html', user = current_user, 
-                collection = collection, adminId = config.adminId)
-        else:
-            abort(404)
-    else:
-        collection = db.reference('collections/' + str(uid)).get()
-        if collection:
-            return render_template('public/collection.html', collection = collection)
-        else:
-            abort(404)
+from app.methods import unroll as u
+from app import apiTwitter
 
+@app.route('/test')
+def testRoute():
+    # payload = {
+    #     "author_name": "Arsalan Bashir",
+    #     "author_handle": "arslnb",
+    #     "tweet_text": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.",
+    #     "uid": "akjsdna"
+    # }
+    # u.getTimelineImg(payload)
+    tw_id = "1047433903341031424"
+    message = apiTwitter.GetStatus(status_id=tw_id).AsDict()['full_text']
+    return message
+    # return "Done"
+
+# * HOME PAGE AND DASHBOARD
 @app.route('/')
 def home():
     if current_user.is_authenticated:
@@ -45,6 +47,40 @@ def home():
         return render_template('public/landing.html', storms = storms, collections = collections,
             featured = featured, active = active)
 
+# * COLLECTIONS
+# Display collections using long link
+@app.route('/collection/<uid>')
+def collection(uid):
+    if current_user.is_authenticated:
+        collection = db.reference('collections/' + str(uid)).get()
+        if collection:
+            return render_template('private/collection.html', user = current_user, 
+                collection = collection, adminId = config.adminId)
+        else:
+            abort(404)
+    else:
+        collection = db.reference('collections/' + str(uid)).get()
+        if collection:
+            return render_template('public/collection.html', collection = collection)
+        else:
+            abort(404)
+
+# Display collections using long link
+@app.route('/c/<sId>')
+def showShortCollection(sId):
+    _c = db.reference('collections/').order_by_child('shortCode').equal_to(sId).get()
+    if _c:
+        collection = _c.values()[0]
+        if current_user.is_authenticated:
+            return render_template('private/collection.html', user = current_user, 
+                collection = collection, adminId = config.adminId)
+        else:
+            return render_template('public/collection.html', collection = collection)
+    else:
+        abort(404)
+
+# * STORIES
+# Display stories using long link
 @app.route('/storm/<uid>')
 def showStorm(uid):
     if current_user.is_authenticated:
@@ -63,6 +99,24 @@ def showStorm(uid):
         else:
             abort(404)
 
+# Display story using short link
+@app.route('/s/<sId>')
+def showShortStorm(sId):
+    _s = db.reference('tweetstorms/').order_by_child('shortCode').equal_to(sId).get()
+    if _s:
+        storm = _s.values()[0]
+        uid = storm['story_id']
+        if current_user.is_authenticated:
+            collections = db.reference('collections').order_by_child('author_uid').equal_to(current_user.id).get()
+            return render_template('private/storm.html', storm = storm, 
+                user = current_user, storm_id = uid, collections = collections)
+        else:
+            return render_template('public/storm.html', storm = storm,
+                storm_id = uid)
+    else:
+        abort(404)
+
+# * DISCOVER PAGE
 @app.route('/discover')
 def discover():
     if current_user.is_authenticated:
@@ -90,6 +144,7 @@ def searchResults():
         return render_template('public/search.html', storms = stories, 
             collections = collections, keyword = keyword, title = "Search - ")
 
+# * GENERATE STATIC SITEMAP.XML FILE
 @app.route('/sitemap.xml', methods=['GET'])
 def sitemap():
     try:
@@ -115,6 +170,7 @@ def sitemap():
     except Exception as e:
         return(str(e))	  
 
+# * REQURIED PAGES, SELF EXPLANATORY
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template('public/404.html'), 404

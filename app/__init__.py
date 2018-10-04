@@ -2,11 +2,12 @@ from flask import Flask
 from flask_login import LoginManager
 from flask_assets import Environment
 from firebase_admin import credentials
-from configs import staging as config
+from configs import production as config
 from flask_restful import Api
 from celery import Celery
 import firebase_admin
 from raven.contrib.flask import Sentry
+from flask_gzip import Gzip
 import twitter
 
 apiTwitter = twitter.Api(consumer_key=config.twitter["consumerKey"],
@@ -17,6 +18,7 @@ apiTwitter = twitter.Api(consumer_key=config.twitter["consumerKey"],
 
 app = Flask(__name__)
 app.secret_key = "askdhabiuhasdjahbjda"
+gzip = Gzip(app)
 
 sentry = Sentry(app, dsn='https://340895e4e4d9400e850bcab30058be3d:f18ab2bde06440e9950a762e5fe93fec@sentry.io/1282333')
 

@@ -101,17 +101,13 @@
                 <div class="columns is-centered">
                     <div class="is-10 column">
                         <div class="title-block">
-                            <h3 class="author-name">@{{storm.author.handle}}</h3>
+                            <h3 class="author-name">{{storm.vis_timestamp}}</h3>
                             <h1 class="storm-title">
-                            {% if storm.master_tweet.text|length > 44 %}
-                            {{storm.master_tweet.text[:44]}}...
-                            {% else %}
-                            {{storm.master_tweet.text}}
-                            {% endif %}
+                            Story by @{{storm.author.handle}}
                             </h1>
                             <div class="dash" style="background: #{{storm.author.color}}"></div>
                         </div>
-                        <h2 class="subheader sh-storm">This story was orignally written on Twitter by <a href="https://twitter.com/{{storm.author.handle}}" target="_blank">@{{storm.author.handle}}</a> and unrolled by {{storm.unrolled_by_handle|lower}} on {{storm.vis_timestamp}}.</h2>
+                        <h2 class="subheader sh-storm">This story contains {{storm.tweets.keys()|length}} tweets and it was unrolled by <a href="https://twitter.com/{{storm.unrolled_by_handle}}">@{{storm.unrolled_by_handle}}</a></h2>
                     </div>
                 </div>
                 <div class="columns is-centered">
@@ -141,14 +137,14 @@
                                 <a class="box fragment" href="{{tweet.urls[loop.index0].url}}" target="_blank">
                                     {% if tweet.urls[loop.index0].image != "" or tweet.urls[loop.index0].title != "" or tweet.urls[loop.index0].description != "" %}
                                     {% if tweet.urls[loop.index0].image != "" %}
-                                    <img src ="{{tweet.urls[loop.index0].image}}" alt="some description"/> 
+                                    <img src ="{% if tweet.urls[loop.index0].image %}{{tweet.urls[loop.index0].image}}{% else %}/static/img/processing.png{% endif %}" alt="{{tweet.urls[loop.index0].title}}"/> 
                                     {% endif %}
                                     {% if tweet.urls[loop.index0].title != "" %}
                                     <h3>{{tweet.urls[loop.index0].title}}</h3>
                                     {% endif %}
                                     <p class="text">
                                         {% if tweet.urls[loop.index0].description != "" %}
-                                        {{tweet.urls[loop.index0].description}}
+                                        {{tweet.urls[loop.index0].description[:197]}}...
                                         {% endif %}
                                     </p>
                                     {% else %}

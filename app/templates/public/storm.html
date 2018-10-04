@@ -95,7 +95,10 @@
                         {% for tweet in storm.tweets.values()|sort(attribute='id') %}
                             <div class="tweet-action">
                                 <p class="body-text">
-                                    {{tweet.text}}
+                                    {% for snippet in tweet.text.split('\n')%}
+                                    {{snippet|safe}}
+                                    <br>
+                                    {% endfor %}
                                     <span>
                                         <p class="buttons annotate-btn"  data-show="quickview" data-target="qv_{{tweet.ts_uid}}">
                                             <a class="button is-rounded is-small is-dark">
@@ -116,14 +119,14 @@
                                 <a class="box fragment" href="{{tweet.urls[loop.index0].url}}" target="_blank">
                                     {% if tweet.urls[loop.index0].image != "" or tweet.urls[loop.index0].title != "" or tweet.urls[loop.index0].description != "" %}
                                     {% if tweet.urls[loop.index0].image != "" %}
-                                    <img src ="{{tweet.urls[loop.index0].image}}" alt="some description"/> 
+                                    <img src ="{% if tweet.urls[loop.index0].image %}{{tweet.urls[loop.index0].image}}{% else %}/static/img/processing.png{% endif %}" alt="{{tweet.urls[loop.index0].title}}"/> 
                                     {% endif %}
                                     {% if tweet.urls[loop.index0].title != "" %}
                                     <h3>{{tweet.urls[loop.index0].title}}</h3>
                                     {% endif %}
                                     <p class="text">
                                         {% if tweet.urls[loop.index0].description != "" %}
-                                        {{tweet.urls[loop.index0].description}}
+                                        {{tweet.urls[loop.index0].description[:197]}}...
                                         {% endif %}
                                     </p>
                                     {% else %}
@@ -163,7 +166,10 @@
                                 <div class="quickview-body">
                                     <div class="quickview-block finder-block">
                                         <div class="tweet-annotate-ref">
-                                            " {{tweet.text}} "
+                                            {% for snippet in tweet.text.split('\n')%}
+                                            {{snippet|safe}}
+                                            <br>
+                                            {% endfor %}
                                         </div>
                                         <div class="comments-all">
                                             <div class="title is-5 comments-title">All Comments</div>

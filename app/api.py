@@ -3,7 +3,7 @@ from flask_restful import Resource
 from flask_restful import reqparse
 from flask_login import current_user
 from app.methods import unroll as u
-from configs import staging as config
+from configs import production as config
 from firebase_admin import db
 from app import apiTwitter
 from werkzeug import FileStorage
@@ -182,12 +182,15 @@ class NewCollection(Resource):
         ue_desc = urllib.unquote(data['desc'])
         ue_genre = urllib.unquote(data['genre'])
 
+        shortCode = u.getShortcode()
+
         payload = {
             "title": ue_title,
             "desc": ue_desc,
             "genre": ue_genre,
             "timestamp": vis_timestamp,
             "time": str(time.time()),
+            "shortCode": shortCode,
             "meta_url": "/static/img/processing.png",
             "image_url": "/static/img/processing.png",
             "author_uid": current_user.id,

@@ -7,7 +7,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver import FirefoxOptions
 from app import apiTwitter as api
 from cloudinary.uploader import upload
-from app.configs import staging as config
+from app.configs import production as config
 from firebase_admin import db
 from app import celery
 from PIL import Image
@@ -16,12 +16,14 @@ from PIL import ImageFont
 from PIL import ImageOps
 from flask import render_template
 from app import apiTwitter
+from hashids import Hashids
 from app import app
 import cloudinary
 import textwrap
 import requests
 import datetime
 import random
+import urllib
 
 now = datetime.datetime.now()
 
@@ -48,11 +50,11 @@ def getListOfIds(tweet_id, handle, stormId, is_anon):
     try:
         more_replies = driver.find_element_by_css_selector(".ThreadedConversation-moreReplies") 
         more_replies.find_element_by_css_selector('.ThreadedConversation-moreRepliesLink').click()
-        wait = WebDriverWait(driver, 10)
+        wait = WebDriverWait(driver, 20)
         element = wait.until(EC.invisibility_of_element_located(more_replies))
     except NoSuchElementException:
         pass
-  
+
     # GET THE main tweet
     storm = {}
 
@@ -105,23 +107,36 @@ def cleanThreadObject(storm, stormId, is_anon):
     }
 
     metaUrl = generateImg(metaImg)
+    shortCode = getShortcode()
 
     db.reference('tweetstorms/' + stormId).update({
         'is_ready': True,
         'meta_url': metaUrl,
+        'shortCode': shortCode,
         'master_tweet': {
             'created_at': vis_timestamp,
             'text': storm[1]['text']
         }
     })
 
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    urllib.urlretrieve(s_ref['author']['image'], current_dir + "/tmp/user_img" + stormId + ".png")
+
+    inlineImgPayload = {
+        "author_name": s_ref['author']['name'],
+        "author_handle": s_ref['author']['handle'],
+        "tweet_text": storm[1]['text'],
+        "author_img": current_dir + "/tmp/user_img" + stormId + ".png",
+        "uid": stormId
+    }
+
+    inlineImgUrl = getTimelineImg(inlineImgPayload)
+    os.remove(current_dir + "/tmp/user_img" + stormId + ".png")
+
     if not is_anon:
-        if s_ref['unrolled_by_handle'] != "anonymous":
-            if s_ref['trigger_id'] != False:
-                apiTwitter.CreateFavorite(status_id = int(s_ref['trigger_id']))
-                apiTwitter.PostUpdate(TweetOut(s_ref['unrolled_by_handle'], stormId), in_reply_to_status_id = int(s_ref['trigger_id']))
-            else:
-                apiTwitter.PostUpdate(TweetOut(s_ref['unrolled_by_handle'], stormId))
+        if s_ref['unrolled_by_handle'] != "anonymous" and s_ref['trigger_id'] != False:
+            apiTwitter.CreateFavorite(status_id = int(s_ref['trigger_id']))
+            apiTwitter.PostUpdate(TweetOut(shortCode, s_ref['author']['handle']), in_reply_to_status_id = int(s_ref['trigger_id']), media=inlineImgUrl)
     else:
         with app.app_context():
             rendered_html = render_template("email.html", action_url = stormId, meta_url = metaUrl)
@@ -189,7 +204,15 @@ def getTweetBreakDown(tweetInfo):
             reqUrl = "http://api.linkpreview.net/?key=%s&q=%s" % (config.lp['key'], url['expanded_url'])
             req = requests.get(reqUrl)
             linkInfo = req.json()
-            returnedTweet['urls'][urlCounter] = linkInfo
+            if "error" in linkInfo.keys():
+                returnedTweet['urls'][urlCounter] = {
+                    "title": url['expanded_url'][:25] + "...",
+                    "url": url['expanded_url'],
+                    "description": url['expanded_url'],
+                    "image": None
+                }
+            else:
+                returnedTweet['urls'][urlCounter] = linkInfo
             urlCounter += 1
     return returnedTweet
 
@@ -317,9 +340,57 @@ def uploadImg(filename, uuid):
 
     return True
 
-def TweetOut(authorHandle, ShortId):
-    options = ["Hey! Here's that story by @{authorHandle} that you requested. Have a nice one \n\n https://tidystory.com/storm/{ShortId}",
-        "Hi, hope you're excited to check out the story by @{authorHandle} you requested. Here it is \n\n https://tidystory.com/storm/{ShortId}",
-        "Hello! The story by @{authorHandle} is ready for you to read. Check it out here \n\n https://tidystory.com/storm/{ShortId}"]
-    message = random.choice(options)
+def TweetOut(ShortId, authorHandle):
+    greeting = random.choice(config.composer["greetings"])
+    body = random.choice(config.composer["body"])
+    body = body.replace('__auth_handle__', '@' + authorHandle)
+    message = greeting + body + str(ShortId)
     return message
+
+def getTimelineImg(payload):
+    current_dir = os.path.dirname(os.path.realpath(__file__))
+    base = Image.open(config.metaBase["timelineBase"])
+    draw = ImageDraw.Draw(base)
+
+    ty = 116
+
+    font0 = ImageFont.truetype(config.metaBase["font3"], 48)
+    font1 = ImageFont.truetype(config.metaBase["font1"], 30)
+
+    lines = textwrap.wrap("\"" + payload["tweet_text"][:130] + "...\"", width=40)
+    for line in lines:
+        draw.text((44, ty), line, font=font0, fill=(216,216,216,205))
+        ty += 66
+
+    draw.text((115, 424), payload["author_name"], font=font1, fill=(216,216,216,155))
+    draw.text((115, 456), "@" + payload["author_handle"], font=font1, fill=(216,216,216,155))
+
+    avatar_size = (52, 52)
+    av_mask = Image.new('L', avatar_size, 0)
+    av_draw = ImageDraw.Draw(av_mask) 
+    av_draw.ellipse((0, 0) + avatar_size, fill=255)
+    avatar_img = Image.open(payload['author_img'])
+    avatar_output = ImageOps.fit(avatar_img, av_mask.size, centering=(0.5, 0.5))
+    avatar_output.putalpha(av_mask)
+
+    base.paste(avatar_output, (44, 432), avatar_output)
+
+    filename = current_dir + "/tmp/timeline_img_" + payload["uid"] + ".png"
+    base.save(filename, "PNG")
+    cloudinary.config(
+        cloud_name = 'tidystory',  
+        api_key = '929736318553763',  
+        api_secret = '2DU6OC9SvRTIsD242Lc0ihHKdbU'  
+    )
+
+    url = upload(filename)['secure_url']
+    os.remove(filename)
+    return url
+
+def getShortcode():
+    currentCount = db.reference('hashcounter').get()['num']
+    hashids = Hashids(salt=config.hashSalt, min_length = 6)
+    db.reference('hashcounter').update({
+        'num': currentCount + 1
+    })
+    return hashids.encode(currentCount + 1)

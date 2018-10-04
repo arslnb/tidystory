@@ -1,6 +1,6 @@
 from app import app
 from app import login_manager
-from app.configs import staging as config
+from app.configs import production as config
 from flask_login import UserMixin
 from flask_login import login_user
 from flask_login import logout_user

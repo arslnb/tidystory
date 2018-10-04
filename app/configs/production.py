@@ -31,8 +31,8 @@ hashSalt = "El3fkRIo3"
 twitter = {
     "consumerKey": "BThB1OSHSBEZTN2WN9ZIaBzjH",
     "consumerSecret": "zfU9gAVxxbwn0bAWQWuoIbTQA7Ct8PIuJcJHCMSesYLkzCfTjJ",
-    "accessKey": "1005509129417326592-sAQgIqsmCoWSYVrwZXOZLracIZPw2D",
-    "accessSecret": "3Ko5i1kcMmm5Y7fU1xmCY74IATUKyRylLQdJD4wkia3Mr"
+    "accessKey": "1005509129417326592-V7IneakvKT8D4FORyq9r8p6KPlYIZT",
+    "accessSecret": "BXowNq1I2XA7uf9rDGXzdXOUXA9jHJLburf1fXrYV9lOm"
 }
 
 cloudinary = {

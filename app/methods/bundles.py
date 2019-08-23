@@ -8,7 +8,7 @@ from app import assets
 
 landing_js = Bundle(
         'js/jquery.min.js',
-        'scripts/config-staging.js',
+        'scripts/config-prod.js',
         'scripts/landing.js', 
     output='bundles/js/landing.js'
 )

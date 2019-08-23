@@ -298,25 +298,26 @@ class TwitterWebhook(Resource):
                     task = u.getListOfIds.delay(id_str, tweet['user']['screen_name'], storm_id, False)
         return {"status": "success"}
 
-class SetupTwitter(Resource):
-    def get(self):
-        url = "https://api.twitter.com/1.1/account_activity/all/staging/subscriptions.json"
-        auth = OAuth1(config.twitter['consumerKey'], config.twitter['consumerSecret'], config.twitter['accessKey'], config.twitter['accessSecret'])
-        r = requests.post(url, auth = auth)
-        print r.request.headers
-        return {'status': 'done', 'data': r.json()}
-    def put(self):
-        print "ok"
-        # current wh 1040229066979401728
-        url = 'https://api.twitter.com/1.1/account_activity/all/staging/webhooks.json?url=https%3A%2F%2Fadae1b9b.ngrok.io%2Fwebhook%2Ftwitter'
-        auth = OAuth1(config.twitter['consumerKey'], config.twitter['consumerSecret'], config.twitter['accessKey'], config.twitter['accessSecret'])
-        r = requests.post(url, auth=auth)
-        return {'status': 'done', 'data': r.json()}
-    def delete(self):
-        url = "https://api.twitter.com/1.1/account_activity/all/staging/webhooks/1040229066979401728.json"
-        auth = OAuth1(config.twitter['consumerKey'], config.twitter['consumerSecret'], config.twitter['accessKey'], config.twitter['accessSecret'])
-        r = requests.delete(url, auth=auth)
-        return {'status': 'done'}
+# class SetupTwitter(Resource):
+#     def get(self):
+#         print "\nOKAY\n"
+#         url = "https://api.twitter.com/1.1/account_activity/all/staging/subscriptions.json"
+#         auth = OAuth1(config.twitter['consumerKey'], config.twitter['consumerSecret'], config.twitter['accessKey'], config.twitter['accessSecret'])
+#         r = requests.post(url, auth = auth)
+#         return {'status': 'done', 'data': r.json()}
+#     def put(self):
+#         print "ok"
+#         # current wh 1042515771979694080
+        
+#         url = 'https://api.twitter.com/1.1/account_activity/all/staging/webhooks.json?url=https%3A%2F%2Ftidystory.com%2Fwebhook%2Ftwitter'
+#         auth = OAuth1(config.twitter['consumerKey'], config.twitter['consumerSecret'], config.twitter['accessKey'], config.twitter['accessSecret'])
+#         r = requests.post(url, auth=auth)
+#         return {'status': 'done', 'data': r.json()}
+#     def delete(self):
+#         url = "https://api.twitter.com/1.1/account_activity/all/staging/webhooks/1042515771979694080.json"
+#         auth = OAuth1(config.twitter['consumerKey'], config.twitter['consumerSecret'], config.twitter['accessKey'], config.twitter['accessSecret'])
+#         r = requests.delete(url, auth=auth)
+#         return {'status': 'done'}
 
 endpoints.add_resource(Story, '/v1/story')
 endpoints.add_resource(Annotation, '/v1/annotation')
@@ -325,4 +326,4 @@ endpoints.add_resource(EditCollection, '/v1/collection/<uid>')
 endpoints.add_resource(Feature, '/v1/feature/<uid>')
 endpoints.add_resource(TwitterWebhook, '/webhook/twitter')
 
-endpoints.add_resource(SetupTwitter, '/t1')
+# endpoints.add_resource(SetupTwitter, '/t1')

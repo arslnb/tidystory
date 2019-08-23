@@ -24,9 +24,9 @@ def testRoute():
     #     "uid": "akjsdna"
     # }
     # u.getTimelineImg(payload)
-    tw_id = "1047433903341031424"
-    message = apiTwitter.GetStatus(status_id=tw_id).AsDict()['full_text']
-    return message
+    print apiTwitter.GetStatus(1050015903247667200)
+    apiTwitter.PostUpdate("@arsalanbashir Hello, Arsalan! Here it is!", in_reply_to_status_id=1050015903247667200)
+    return "ok"
     # return "Done"
 
 # * HOME PAGE AND DASHBOARD

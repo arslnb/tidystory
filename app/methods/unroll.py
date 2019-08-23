@@ -136,7 +136,8 @@ def cleanThreadObject(storm, stormId, is_anon):
     if not is_anon:
         if s_ref['unrolled_by_handle'] != "anonymous" and s_ref['trigger_id'] != False:
             apiTwitter.CreateFavorite(status_id = int(s_ref['trigger_id']))
-            apiTwitter.PostUpdate(TweetOut(shortCode, s_ref['author']['handle']), in_reply_to_status_id = int(s_ref['trigger_id']), media=inlineImgUrl)
+            tweetTextFinal = "@" + s_ref['unrolled_by_handle'] + " " + TweetOut(shortCode, s_ref['author']['handle'])
+            apiTwitter.PostUpdate(tweetTextFinal, in_reply_to_status_id = int(s_ref['trigger_id']), media=inlineImgUrl)
     else:
         with app.app_context():
             rendered_html = render_template("email.html", action_url = stormId, meta_url = metaUrl)

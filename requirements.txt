@@ -53,7 +53,7 @@ python-twitter==3.4.2
 pytz==2018.4
 raven==6.9.0
 redis==2.10.6
-requests==2.18.4
+requests==2.20.0
 requests-oauthlib==1.0.0
 rsa==3.4.2
 selenium==3.14.0
